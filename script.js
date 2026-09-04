@@ -37,7 +37,17 @@ function addTransaction(e) {
 
   // get form values
   const description = descriptionEl.value.trim();
-  const amount = parseFloat(amountEl.value);
+  const amountValue = parseFloat(amountEl.value);
+  const transactionType = document.querySelector(
+    'input[name="transaction-type"]:checked',
+  ).value;
+
+  if (description === "" || Number.isNaN(amountValue) || amountValue < 0) {
+    alert("please enter a valid description and amount");
+    return;
+  }
+
+  const amount = transactionType === "expense" ? -amountValue : amountValue;
 
   transactions.push({
     id: Date.now(),
@@ -49,11 +59,6 @@ function addTransaction(e) {
 
   updateTransactionList();
   updateSummary();
-
-  if (description === "" || isNaN(amount)) {
-    alert("please enter valid description and amount");
-    return;
-  }
 
   transactionFormEl.reset();
 }

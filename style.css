@@ -327,6 +327,67 @@ h2 {
   margin-bottom: 20px;
 }
 
+.transaction-type {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 4px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--surface);
+}
+
+.type-option {
+  position: relative;
+  display: block;
+  margin: 0;
+  color: var(--secondary-text);
+  cursor: pointer;
+  font-weight: 500;
+  text-align: center;
+}
+
+.type-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.type-option span {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.type-option input:checked + span {
+  background-color: #d1fae5;
+  color: #047857;
+}
+
+.type-option input[value="expense"]:checked + span {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.type-option input:focus-visible + span {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+body.dark-theme .type-option input:checked + span {
+  background-color: #14532d;
+  color: #a7f3d0;
+}
+
+body.dark-theme .type-option input[value="expense"]:checked + span {
+  background-color: #7f1d1d;
+  color: #fecaca;
+}
+
 label {
   display: block;
   margin-bottom: 8px;
